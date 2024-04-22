@@ -1,0 +1,1 @@
+This is an example application for using Launch Darkly within a React app. 
