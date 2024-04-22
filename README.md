@@ -41,5 +41,22 @@ Once the project is created you will be greeted with the following screen.
 Here we will now have our default environments and project keys available to use. With this information we can set up our React project to leverage the Launch Darkly SDK.
 
 ## Set up 🛠 Launch Darkly SDK for React
+Our next step is to set up the Launch Darkly SDK in our React project. To do this we will need to install the SDK and set up the configuration to load the SDK and connect to the correct project and environment.
+
+To setup the SDK we will be leveraging the `launchdarkly-react-client-sdk` package. This package provides a variety of hooks and components to interact with the Launch Darkly SDK. 
+
+You can view the package on [npm](https://www.npmjs.com/package/launchdarkly-react-client-sdk). 
+
+Install the SDK by running the following command in your React project directory:
+```bash
+npm install launchdarkly-react-client-sdk
+```
+> NOTE: You can use any node package installer you prefer. Here I am using base npm as an example.
+> If you are testing with the example project in this repo, you can run `npm install` to install all the necessary dependencies including this one.
+
+Once the package is installed we can now start the setup process.
+
+
+
 ## Create a 🚩 feature flag in Launch Darkly Console
 ## Implement 🛠 feature flag in React

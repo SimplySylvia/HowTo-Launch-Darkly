@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "1",
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/962130/header.jpg?t=1713459817",
+    "video": "https://cdn.cloudflare.steamstatic.com/steam/apps/257016122/microtrailer.webm?t=1713202592",
+    "finalPrice": "Coming Soon"
+  },
+  {
+    "_id": "2",
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1172620/header.jpg?t=1713532971",
+    "video": "https://cdn.cloudflare.steamstatic.com/steam/apps/256936077/microtrailer.webm?t=1678968012",
+    "finalPrice": "Coming Soon"
+  },
+  {
+    "_id": "3",
+    "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/2461850/header.jpg?t=1713794369",
+    "video": "https://cdn.cloudflare.steamstatic.com/steam/apps/256987683/microtrailer.webm?t=1702054568",
+    "finalPrice": "Coming Soon"
+  }
+]

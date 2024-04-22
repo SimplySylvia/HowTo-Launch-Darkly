@@ -1,24 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import HorizontalCardGallery from "./Components/UI/Cards/HorizontalCardGallery";
+
+import products_upcoming from "./db/mocks/products_upcoming.json";
+import products_sale from "./db/mocks/products_sale.json";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HorizontalCardGallery title={"🕐 Upcoming Releases"} products={products_upcoming} />
+      <HorizontalCardGallery title={"Save some money with this 🔥 sale!"} products={products_sale} />
     </div>
   );
 }
