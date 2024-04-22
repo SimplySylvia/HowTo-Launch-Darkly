@@ -33,7 +33,7 @@ import { asyncWithLDProvider, LDContext } from "launchdarkly-react-client-sdk";
 
   root.render(
     <React.StrictMode>
-      // Wrap application with provider so feature flags are available
+      {/* Wrap application with provider so feature flags are available */}
       <LDProvider>
         <App />
       </LDProvider>
