@@ -12,7 +12,7 @@ const HorizontalCardGallery = ({ products, title }: HorizontalCardGalleryProps) 
     <div className="horizontal-card-gallery">
       <div className="horizontal-card-gallery__title">{title}</div>
       <div className="horizontal-card-gallery__slider">
-        {products.map((product) => (<ProductMini key={`sale-product-${product}`} product={product} />))}
+        {products.map((product) => (<ProductMini key={`product-${Math.round(Math.random() * 2000)}-${product}`} product={product} />))}
       </div>
     </div>
   );
