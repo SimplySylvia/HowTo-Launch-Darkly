@@ -15,6 +15,7 @@ In this breakdown we will be going over how to set up and leverage a Launch Dark
 3. Create a 🚩 feature flag in Launch Darkly Console
 4. Implement 🛠 feature flag in React
 5. Rules 🧐 
+___
 
 ## Set up 📁 Launch Darkly Project and 🏗 Environments
 Once you are logged into Launch Darkly, you will be greeted with the following screen:
@@ -42,6 +43,7 @@ Once the project is created you will be greeted with the following screen.
 
 ![Launch Darkly Project Dashboard](./assets/setup_project/new-project-details.png)
 Here we will now have our default environments and project keys available to use. With this information we can set up our React project to leverage the Launch Darkly SDK.
+___
 
 ## Set up 🛠 Launch Darkly SDK for React
 Our next step is to set up the Launch Darkly SDK in our React project. To do this we will need to install the SDK and set up the configuration to load the SDK and connect to the correct project and environment.
@@ -200,12 +202,13 @@ import { asyncWithLDProvider, LDContext } from "launchdarkly-react-client-sdk";
 })();
 ```
 You should now see the following in your chrome console:
+
 ![Chrome Console](./assets/setup_react_sdk/console_output_init.png)
 
 At this point we have set up the Launch Darkly SDK in our React project and connected it to the project and environment we set up in the Launch Darkly console. 🎉 
 
 ![celebrate](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3J5Z2hzNGE3eDk4N3pqMnk1bjR5MWFvcmgyMXB1YTI5NHk5czdueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Dg4TxjYikCpiGd7tYs/giphy.gif)
-
+___
 ## Create a 🚩 feature flag in Launch Darkly Console
 Now that we have our application setup we can now create a feature flag in the Launch Darkly console.
 
@@ -322,3 +325,65 @@ If we look at our application now we can see that the sales gallery component is
 Final step... Rules! 
 
 ### Rules 🧐
+It is time to set up rules for the feature flag. Rules are a way to control the visibility of the feature flag based on a variety of factors. 
+
+To set up rules for the feature flag navigate to the Launch Darkly console and select the feature flag you would like to set up rules for. In this example we will be navigating back to the `sales-highlight` feature flag.
+
+![Flag Saved](./assets/setup_feature_flag/new_flag.png)
+
+You can see there are some default rules available around the targeting of the flag. By default the flag is set to be unavailable to all users while `targeting` is set to off. This means that we have not released this flag to any users yet in this environment. So the default visibility of `off` is being used. Once we turn on the targeting we can set a default to enable the flag for all users or set up rules to control the visibility of the flag based on a variety of conditions we provide. 
+
+To test out enabling the targeting of the flag toggle the `Targeting` switch to `on` and hit save. You will be greeted with the following screen:
+
+![Flag Targeting Enabled](./assets/setup_flag_rules/targeting_on.png)
+
+Hit save again and your flag will now be targeted. Check out the application and you will see the sales gallery component is now visible.
+
+![React Application](./assets/setup_feature_flag/app_example.png)
+
+> 🚨 WHOA! 
+> I did not refresh the page and the component is now visible. How is that possible?
+> Well fun fact! The Launch Darkly SDK is constantly checking for updates to the feature flags and will update the application in real time. This means that if you update the flag in the Launch Darkly console and the application will update in real time without needing to refresh the page.
+
+Now that we have the targeting enabled we can now set up rules to control the visibility of the flag based on the conditions we provide. Since this is going to be a simple example we will set up a rule to control the visibility of the flag based on the `enrolledInBeta` attribute we set up in the user context.
+
+Click the `Add Rule` button to add a new rule to the flag. You will be greeted with a variety of options to choose from to set up the rule.
+1. Target Segments 
+   - This is where you can target the flag based on a specific segment of users. 
+   - An example of this would be to target the flag based on the region the user is in or if the user is in a specific group like our beta group. 
+   - You can set up a segment by selecting the `Segments` section and then `Create Segment` button and providing the necessary information for the segment.  (We will be doing this shortly!)
+2. Target individuals
+   - This is where you can target the flag based on a specific user or selection of users we specify. They can be identified via the user context key that is provided when the application is initialized.
+3. Target mobile
+   -  Target by device type
+   -  Target by application version
+4. Build custom rule
+  - This is where you can build a custom rule to target the flag based on a variety of conditions you provide from scratch. 
+
+Since we are going to be targeting the flag based on the `enrolledInBeta` attribute we will be setting up a segment to target the flag based on this attribute.
+
+To set up the segment we will need to do the following:
+1. Navigate to the `Segments` section of the Launch Darkly console.
+
+![Select Segment](./assets/setup_flag_rules/segment_select.png)
+2. Select the `Create Segment` button to add a new segment.
+
+![Create Segment](./assets/setup_flag_rules/create_segment.png)
+
+3. Provide the necessary information for the segment.
+![Segment Details](./assets/setup_flag_rules/segment_details.png)
+
+Hit save, and you will now have a segment set up in Launch Darkly and be greeted with the following screen:
+![Segment Targeting](./assets/setup_flag_rules/segment_targeting.png)
+
+4. Add the rule to include all users who are `enrolledInBeta` in the segment. Hit `Add Rule` and select the `custom rule` option. From there we can provide all the details to our custom rule. 
+![Custom Rule](./assets/setup_flag_rules/custom_rule.png)
+> REMINDER: Click `Save changes` to save the rule.
+
+Now head back to the `sales-highlight` feature flag add a condition to target the flag based on the segment we set up.
+![Feature with Segment Rule](./assets/setup_flag_rules/segment_feature.png)
+
+Notice here that because we want only users who are `enrolledInBeta` to see the sales gallery component we have set the flag to be visible only to users who are in the `Beta Users` segment.
+The default rollout of the flag is set to `off` so if the user is not in the `Beta Users` segment they will not see the sales gallery component.
+
+Now its time to play around with the application and see the feature flag in action! 🎉 
