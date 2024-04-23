@@ -11,7 +11,7 @@ import { asyncWithLDProvider, LDContext } from "launchdarkly-react-client-sdk";
 (async ()=> {
   // create the content for the Launch Darkly provider
   const context : { clientSideID: string, context: LDContext } = {
-    clientSideID: "YourClientSideID",
+    clientSideID: "6626a1d9aba81f0f852aa6df",
     context: {
       // REQUIRED: what type of context are we setting
       kind: "user",

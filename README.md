@@ -14,6 +14,7 @@ In this breakdown we will be going over how to set up and leverage a Launch Dark
 2. Set up 🛠 Launch Darkly SDK for React
 3. Create a 🚩 feature flag in Launch Darkly Console
 4. Implement 🛠 feature flag in React
+5. Rules 🧐 
 
 ## Set up 📁 Launch Darkly Project and 🏗 Environments
 Once you are logged into Launch Darkly, you will be greeted with the following screen:
@@ -272,3 +273,52 @@ To implement the flag we will need to do the following:
 1. Import the `useFlags` hook
 2. Use the `useFlags` hook to access the feature flag
 3. Determine the visibility of the component based on the flag
+
+### Import the `useFlags` hook
+To import the `useFlags` hook we will need to add the following line to the top of our `App.tsx` file:
+```tsx
+import { useFlags } from 'launchdarkly-react-client-sdk';
+```
+
+### Use the `useFlags` hook to access the feature flag
+Now that we have the `useFlags` hook imported we can now use it to access the feature flag.
+> NOTE: The `useFlags` hook will return an object with all the feature flags available to the user context.  
+```tsx
+function App() {
+   // Use the useFlags hook to get the value of the feature flags
+   const flags = useFlags();
+   return (
+           <div className="App">
+              <HorizontalCardGallery title={"🕐 Upcoming Releases"} products={products_upcoming} />
+              <HorizontalCardGallery title={"Save some money with this 🔥 sale!"} products={products_sale} />
+           </div>
+   );
+}
+```
+
+### Determine the visibility of the component based on the flag
+Now that we have the feature flag we can now determine the visibility of the component based on the flag. 
+To do this we will need to add a conditional statement to determine if the component should be visible or not. 
+```tsx 
+function App() {
+   // Use the useFlags hook to get the value of the feature flag
+   const flags = useFlags();
+
+   return (
+           <div className="App">
+              <HorizontalCardGallery title={"🕐 Upcoming Releases"} products={products_upcoming} />
+              {/* Conditional for validating the boolean value of the flag */}
+              {flags.salesHighlight && <HorizontalCardGallery title={"Save some money with this 🔥 sale!"} products={products_sale}/>}
+           </div>
+   );
+}
+```
+
+And just like that we have implemented a feature flag in our React application! Wild right? 
+If we look at our application now we can see that the sales gallery component is no longer visible.
+
+![React Application Flag Implemented](./assets/setup_react_feature_flag/application_enabled_flag.png)
+
+Final step... Rules! 
+
+### Rules 🧐
