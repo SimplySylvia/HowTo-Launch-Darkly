@@ -1,6 +1,6 @@
 # HOW TO: Launch Darkly 
 In this breakdown we will be going over how to set up and leverage a Launch Darkly project for feature flagging.
-> NOTE: This repo contains the finalized for this setup.
+> NOTE: This repo contains the finalized code for this setup.
 
 ## Prerequisites
 - [ ] Launch Darkly Account
